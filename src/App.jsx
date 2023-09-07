@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import AppLayout from "./pages/AppLayout";
 import CityList from "./components/CityList";
 import CountryList from "./components/CountryList";
+import City from "./components/City";
 
 const BASE_URL = "http://localhost:8000";
 
@@ -21,7 +22,6 @@ function App() {
         setLoading(true);
         const res = await fetch(`${BASE_URL}/cities`);
         const data = await res.json();
-        console.log("data", data);
         setCities(data);
       } catch {
         alert("There was an error");
@@ -48,6 +48,7 @@ function App() {
             path="cities"
             element={<CityList cities={cities} loading={loading} />}
           />
+          <Route path="cities/:id" element={<City />} />
           <Route
             path="countries"
             element={<CountryList cities={cities} loading={loading} />}
